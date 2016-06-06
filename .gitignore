@@ -1,0 +1,6 @@
+*.pyc
+path_list.json
+policy_list.json
+/saved_video
+*stash*
+*.zip
