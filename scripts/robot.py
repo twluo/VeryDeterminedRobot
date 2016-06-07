@@ -7,7 +7,7 @@ from std_msgs.msg import String, Bool
 from cse_190_final.msg import PolicyList
 
 from astar import astar
-from mdp import Qs, MDP
+from qlearn import Qs, QLearner
 
 from read_config import read_config
 
@@ -26,11 +26,6 @@ class Robot():
 
     def robotInit(self):
         """ Init Publishers"""
-        #self.resultsPathPub = rospy.Publisher(
-        #        "/results/path_list",
-        #        AStarPath,
-        #        queue_size = 20
-        #)
         self.resultsPolicyPub = rospy.Publisher(
                 "/results/policy_list",
                 PolicyList,
@@ -43,16 +38,14 @@ class Robot():
         )
 
     def beginSimulation(self):
-        mdp = MDP(self.config)
+        qlearn = QLearner(self.config)
 
-#INPUT A GRID TODO
-        print "TESTING"
-        while mdp.renameThis():
+        while qlearn.renameThis():
             print "Iterate"
-            result_policy = mdp.iterate()
+            result_policy = qlearn.iterate()
             print "publish"
             self.resultsPolicyPub.publish(result_policy)
-            print "Will Continue?", mdp.renameThis()
+            print "Will Continue?", qlearn.renameThis()
 
         self.simulationCompletePub.publish(True)
         rospy.sleep(10)
