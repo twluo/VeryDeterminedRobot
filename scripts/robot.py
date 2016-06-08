@@ -6,7 +6,6 @@ import math as m
 from std_msgs.msg import String, Bool
 from cse_190_final.msg import PolicyList
 
-from astar import astar
 from qlearn import Qs, QLearner
 
 from read_config import read_config
