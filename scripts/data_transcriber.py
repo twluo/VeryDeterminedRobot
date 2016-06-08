@@ -10,11 +10,6 @@ from read_config import read_config
 class RobotLogger():
     def __init__(self):
         rospy.init_node("robot_logger")
-        self.path_result = rospy.Subscriber(
-                "/results/path_list",
-                AStarPath,
-                self.handle_a_star_algorithm_path
-        )
         self.policy_result = rospy.Subscriber(
                 "/results/policy_list",
                 PolicyList,
@@ -49,17 +44,11 @@ class RobotLogger():
             image_util.save_image_for_iteration(data_to_publish, self.iteration_number)
             self.iteration_number += 1
 
-    def handle_a_star_algorithm_path(self, path_list):
-        self.path_list.append(path_list.data)
-
     def handle_shutdown(self, message):
         print "sim complete!", message.data
         if self.generate_video:
             image_util.generate_video(self.iteration_number)
         if message.data:
-            with open('path_list.json', 'w') as path:
-                #Saving the entire path to be confirmed
-                json.dump(self.path_list, path)
             with open('policy_list.json', 'w') as policy:
                 #Saving only the last policy to be compared
                 json.dump(self.policy_list[-1], policy)
