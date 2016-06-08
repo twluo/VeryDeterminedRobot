@@ -8,21 +8,47 @@ map_y = (read_config()["map_size"][1])
 MAP_SHAPE = (((map_x * (20 + 4)) + 4), ((map_y * (20 + 4)) + 4), 3)
 
 up = cv2.imread("../img/up.jpg")
+up_start = cv2.imread("../img/up_start.jpg")
+up_hit = cv2.imread("../img/up_hit.jpg")
+
 down = cv2.imread("../img/down.jpg")
+down_start = cv2.imread("../img/down_start.jpg")
+down_hit = cv2.imread("../img/down_hit.jpg")
+
 left = cv2.imread("../img/left.jpg")
+left_start = cv2.imread("../img/left_start.jpg")
+left_hit = cv2.imread("../img/left_hit.jpg")
+
 right = cv2.imread("../img/right.jpg")
+right_start = cv2.imread("../img/right_start.jpg")
+right_hit = cv2.imread("../img/right_hit.jpg")
+
 goal = cv2.imread("../img/goal.jpg")
+goal_end = cv2.imread("../img/goal_end.jpg")
+
 wall = cv2.imread("../img/wall.jpg")
+
 pit = cv2.imread("../img/pit.jpg")
+pit_end = cv2.imread("../img/pit_end.jpg")
 
 img_map = {
     "WALL": wall,
     "PIT": pit,
+    "PITE": pit_end,
     "GOAL": goal,
+    "GOALE": goal_end,
     "N": up,
+    "NH": up_hit,
+    "NS": up_start,
     "S": down,
+    "SH": down_hit,
+    "SS": down_start,
     "W": left,
-    "E": right
+    "WH": left_hit,
+    "WS": left_start,
+    "E": right,
+    "EH": right_hit,
+    "ES": right_start
 }
 
 height, width, layers = MAP_SHAPE

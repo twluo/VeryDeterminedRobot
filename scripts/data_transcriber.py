@@ -18,7 +18,7 @@ class RobotLogger():
         self.policy_result = rospy.Subscriber(
                 "/results/policy_list",
                 PolicyList,
-                self.handle_mdp_policy_data
+                self.handle_q_policy_data
         )
         self.simulation_complete_sub = rospy.Subscriber(
                 "/map_node/sim_complete",
@@ -42,7 +42,7 @@ class RobotLogger():
         x, y = self.config["map_size"]
         return [policy_list[i : i + y] for i in xrange(0, len(policy_list), y)]
 
-    def handle_mdp_policy_data(self, policy_list):
+    def handle_q_policy_data(self, policy_list):
         self.policy_list.append(policy_list.data)
         if self.generate_video:
             data_to_publish = self.convert_list_to_2d_array(policy_list.data)
