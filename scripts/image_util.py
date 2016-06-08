@@ -73,5 +73,5 @@ def generate_video(no_of_iterations):
         img = cv2.imread(file_name)
         video.write(cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR))
         #This removes the image after stitching it to the video. Please comment this if you want the images to be saved
-        os.remove(file_name)
+        #os.remove(file_name)
     video.release()
