@@ -1,4 +1,4 @@
-#Path Planning Algorithms Part 2 Project
+#CSE 190 FINAL PROJECT
 
 Tony Luo
 Elton Chen
